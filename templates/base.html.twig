@@ -6,7 +6,9 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+            {{ dump(posts[0].translations) }}
+        {% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>

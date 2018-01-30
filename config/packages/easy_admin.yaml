@@ -1,6 +1,10 @@
 easy_admin:
     entities:
-        - App\Entity\BlogPost
+        BlogPost:
+            class: App\Entity\BlogPost
+            form:
+                fields:
+                    - { property: 'translations', type: 'A2lix\TranslationFormBundle\Form\Type\TranslationsType' }
 #        # List the entity class name you want to manage
 #        - App\Entity\Product
 #        - App\Entity\Category
