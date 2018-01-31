@@ -5,6 +5,11 @@ easy_admin:
             form:
                 fields:
                     - { property: 'translations', type: 'A2lix\TranslationFormBundle\Form\Type\TranslationsType' }
+                    - { property: 'imageFile', type: 'vich_image' }
+            list:
+                fields:
+                    - { property: 'image', type: 'image', base_path: '%app.path.test_images%' }
+                    - { property: 'translations' }
 #        # List the entity class name you want to manage
 #        - App\Entity\Product
 #        - App\Entity\Category
