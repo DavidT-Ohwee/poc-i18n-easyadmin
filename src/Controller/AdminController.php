@@ -3,20 +3,27 @@
 namespace App\Controller;
 
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
-use Symfony\Component\HttpFoundation\Request;
+use A2lix\TranslationFormBundle\Form\Type\TranslationsType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class AdminController extends BaseAdminController
 {
-
-    protected function initialize(Request $request)
+    protected function createBlogPostEntityFormBuilder($entity, $view)
     {
-        $this->get('translator')->setLocale('fr');
-        if ($locale = $request->attributes->get('_locale')) {
-            $request->getSession()->set('_locale', $locale);
-        } else {
-            // if no explicit locale has been set on this request, use one from the session
-            $request->setLocale($request->getSession()->get('_locale', 'fr'));
-        }
-        parent::initialize($request);
+        $form = parent::createEntityFormBuilder($entity, $view);
+        $form->add('translations', TranslationsType::class, [
+        'fields' => [
+                'content' => [
+                    'field_type' => TextareaType::class,
+                    'label' => 'content',
+                    'locale_options' => [
+                        'en' => ['label' => 'content'],
+                        'fr' => ['label' => 'contenu'],
+                    ]
+                ]
+            ],
+            'excluded_fields' => ['details']
+        ]);
+        return $form;
     }
 }

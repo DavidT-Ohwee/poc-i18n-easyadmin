@@ -82,4 +82,9 @@ class BlogPostTranslation implements \A2lix\I18nDoctrineBundle\Doctrine\Interfac
         $this->content = $content;
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
 }
